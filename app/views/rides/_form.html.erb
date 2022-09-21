@@ -1,0 +1,29 @@
+<%= form_for(@ride) do |f| %>
+
+    <%= f.label name="Name:" %>
+    <%= f.text_field :name %>
+    <br>
+    <br>
+    <%= f.label name="Date:" %>
+    <%= f.text_field :date %>
+    <br>
+    <br>
+    <%= f.label name="Location:" %>
+    <%= f.text_field :location %>
+    <br>
+    <br>
+    <%= f.label name="Category:" %>
+    <%= f.select :category, ['CAT 1: 10-12 MPH', 'CAT 2: 12-15 MPH', 'CAT 3: 15-18 MPH', 'CAT 4: 18-22 MPH', 'CAT 5: 23+' ] %>
+    <br>
+    <br>
+    <%= f.label name="Distance (Miles):" %>
+    <%= f.text_field :distance %>
+    <br>
+    <br>
+    <%= f.label name="About:" %>
+    <%= f.text_area :about %>
+    <br>
+    <br>
+    <%= f.submit %>
+    
+<% end %> 

@@ -1,0 +1,19 @@
+<%= link_to "Back to #{@bike.user.username}'s Profile", user_path(@bike.user.username) %>
+<h2><%= @bike.user.username %>'s <%= @bike.model%></h2>
+<br>
+Components:
+<ul>
+<% @bike.components.each do |comp| %>
+    <li><%= comp.category %> - <%= comp.model %></li>
+<% end %>
+</ul>
+
+<% if @bike.user == current_user %>
+    <%= form_tag edit_bike_path, method: :get do %>
+        <%= submit_tag "Edit Bike" %> 
+    <% end %>
+    <br>
+    <%= form_tag delete_bike_path, method: :delete do %>
+        <%= submit_tag "Delete Bike" %> 
+    <% end %>
+<% end %>

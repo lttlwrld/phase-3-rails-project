@@ -1,0 +1,56 @@
+<h2><%= @ride.name %></h2>
+Created By: <%= link_to "#{@ride.user.username}", user_path(@ride.user.username) %>
+<br>
+<br>
+<% if !@ride.completed %>
+    <% if @ride.user == current_user %>
+        <%= form_tag complete_ride_path, method: :patch do %>
+            <%= submit_tag "Mark Completed" %> 
+        <% end %>
+        <br>
+    <% end %>
+    <% if !@ride.users.include?(current_user) %>
+        <%= form_tag join_ride_path, method: :patch do %>
+            <%= submit_tag "Join Ride" %> 
+        <% end %>
+    <% else %>
+        <%= form_tag leave_ride_path, method: :patch do %>
+            <%= submit_tag "Leave Ride" %> 
+        <% end %>
+    <% end %>
+<% else %>
+        <strong>This ride has been completed.</strong>
+        <br>
+<% end %>
+<br>
+<% if @ride.user == current_user %>
+    <%= form_tag edit_ride_path, method: :get do %>
+        <%= submit_tag "Edit Ride" %> 
+    <% end %>
+    <br>
+    <%= form_tag delete_ride_path, method: :delete do %>
+        <%= submit_tag "Delete Ride" %> 
+    <% end %>
+    <br>
+<% end %>
+<strong>Date:</strong> <%= @ride.date %>
+<br>
+<br>
+<strong>Location:</strong> <%= @ride.location %>
+<br>
+<br>
+<strong>Category:</strong> <%= @ride.category %>
+<br>
+<br>
+<strong>Distance:</strong> <%= @ride.distance %> Miles
+<br>
+<br>
+<strong>Details:</strong> <%= @ride.about %>
+<br>
+<br>
+<strong>Participants:</strong>
+<ol>
+<% @ride.users.each do |user| %>
+    <li><%= link_to "#{user.username}", user_path(user.username) %></li>
+<% end %>
+</ol>

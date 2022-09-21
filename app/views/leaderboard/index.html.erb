@@ -1,0 +1,7 @@
+<h2>Leaderboard</h2>
+
+<ol>
+<% User.leaderboard.each do |user, mileage| %>
+    <li><%= link_to "#{user.username}", user_path(user.username) %> - <%= user.name %> - <%= mileage %> Miles</li><br>
+<% end %>
+</ol>

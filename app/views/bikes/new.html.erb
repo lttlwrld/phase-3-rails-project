@@ -1,0 +1,18 @@
+<h2>Add Bike</h2>
+
+<%= form_for @bike, :url => new_bike_path do |f| %>
+    <%= f.label name="Model:" %>
+    <%= f.text_field :model %>
+    <br>
+    <h3>Components:</h3>
+    <%= f.fields_for :components do |c| %>
+
+        <%= c.label name="Category:" %>
+        <%= c.text_field :category %><br>
+        <br>
+        <%= c.label name="Model:" %>
+        <%= c.text_field :model %><br>
+        <br>
+    <% end %>
+    <%= f.submit %>
+<% end %> 

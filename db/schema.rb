@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_20_173543) do
+ActiveRecord::Schema.define(version: 2022_09_20_172543) do
 
   create_table "bikes", force: :cascade do |t|
     t.integer "user_id"
@@ -19,20 +19,12 @@ ActiveRecord::Schema.define(version: 2022_09_20_173543) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "comment"
-    t.integer "ride_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "components", force: :cascade do |t|
-    t.string "type"
+    t.integer "bike_id"
+    t.string "category"
     t.string "model"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "bike_id"
   end
 
   create_table "ride_users", force: :cascade do |t|
@@ -43,8 +35,14 @@ ActiveRecord::Schema.define(version: 2022_09_20_173543) do
   end
 
   create_table "rides", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.string "date"
+    t.string "location"
+    t.string "category"
+    t.string "distance"
+    t.string "about"
+    t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -52,6 +50,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_173543) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "email"
     t.string "name"
     t.string "bio"
     t.datetime "created_at", precision: 6, null: false

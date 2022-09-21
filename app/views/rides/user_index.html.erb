@@ -1,0 +1,24 @@
+<%= link_to "Back to #{@user.username}'s Profile", user_path(@user.username) %>
+<h2><%= @user.username %>'s Rides</h2>
+<% if @user == current_user %>
+    <%= form_tag new_ride_path, method: :get do %>
+        <%= submit_tag "New Ride" %> 
+    <% end %>
+<% end %>
+
+<h4>Upcoming Rides</h4>
+<ul>
+<% @user.rides.each do |ride| %>
+    <% if !ride.completed %>
+        <li><%= link_to "#{ride.name}", ride_path(ride) %> - <%= ride.distance %> miles</li>
+    <% end %>
+<% end %>
+</ul>
+<h4>Past Rides</h4>
+<ul>
+<% @user.rides.each do |ride| %>
+    <% if ride.completed %>
+        <li><%= link_to "#{ride.name}", ride_path(ride) %> - <%= ride.distance %> miles</li>
+    <% end %>
+<% end %>
+</ul>

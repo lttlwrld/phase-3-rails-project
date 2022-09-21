@@ -1,0 +1,14 @@
+<%= link_to "Back to #{@user.username}'s Profile", user_path(@user.username) %>
+<br>
+<h2><%= @user.username %>'s Bikes</h2>
+<% if @user == current_user %>
+    <%= form_tag new_bike_path, method: :get do %>
+        <%= submit_tag "Add Bike" %> 
+    <% end %>
+<% end %>
+<br>
+<% @user.bikes.each do |bike|%>
+    <%= link_to "#{bike.model}", bike_path(bike.user.username, bike) %>
+    <br>
+    <br>
+<% end %>

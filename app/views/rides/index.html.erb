@@ -1,0 +1,20 @@
+<h2>All Rides</h2>
+<%= form_tag new_ride_path, method: :get do %>
+    <%= submit_tag "New Ride" %> 
+<% end %>
+<h4>Upcoming Rides</h4>
+<ul>
+<% @rides.each do |ride| %>
+    <% if !ride.completed %>
+        <li><%= link_to "#{ride.name}", ride_path(ride) %> - <%= ride.distance %> miles</li>
+    <% end %>
+<% end %>
+</ul>
+<h4>Past Rides</h4>
+<ul>
+<% @rides.each do |ride| %>
+    <% if ride.completed %>
+        <li><%= link_to "#{ride.name}", ride_path(ride) %> - <%= ride.distance %> miles</li>
+    <% end %>
+<% end %>
+</ul>

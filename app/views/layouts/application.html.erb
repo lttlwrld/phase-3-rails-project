@@ -1,16 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Phase3RailsProject</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      .page {
+        padding: 25px;  
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+      }
+    </style>
+    <title>VeloBuds</title>
+    <% if logged_in? %>
+      <div class="topnav">
+        <%= link_to "VeloBuds", root_path %>
+        <%= link_to "Profile", user_path(current_user.username) %>
+        <%= link_to "Rides", rides_path %>
+        <%= link_to "Leaderboard", leaderboard_path %>
+        <%= link_to "Log Out", logout_path, method:'delete' %>
+      </div>
+    <% else %>
+      <div class="topnav">
+        <%= link_to "VeloBuds", root_path %>
+        <%= link_to "Log In", login_path %>
+        <%= link_to "Sign Up", signup_path %>
+      </div>
+    <% end %>
   </head>
-
+  
   <body>
+    <div class="page">
     <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,23 @@
+<h3>Join the Peleton!</h3>
+<br>
+<%= form_tag ({controller: 'users', action: 'create', method: 'post'}) do %>
+
+    <%= label name="username", value="Username:" %>
+    <%= text_field_tag name="username" %>
+    <br>
+    <br>
+    <%= label name="email", value="E-Mail:" %>
+    <%= text_field_tag name="email" %>
+    <br>
+    <br>
+    <%= label name="password", value="Password:" %>
+    <%= password_field_tag name="password" %>
+    <br>
+    <br>
+    <%= label name="name", value="Name:" %>
+    <%= text_field_tag name="name" %>
+    <br>
+    <br>
+    <%= submit_tag "Sign Up" %>
+  
+<% end %>
