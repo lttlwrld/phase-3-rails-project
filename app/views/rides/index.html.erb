@@ -1,6 +1,8 @@
 <h2>All Rides</h2>
-<%= form_tag new_ride_path, method: :get do %>
-    <%= submit_tag "New Ride" %> 
+<% if logged_in? %>
+    <%= form_tag new_ride_path, method: :get do %>
+        <%= submit_tag "New Ride" %> 
+    <% end %>
 <% end %>
 <h4>Upcoming Rides</h4>
 <ul>

@@ -1,6 +1,6 @@
 <h3>Welcome Back</h3>
 <br>
-<%= form_tag ({controller: 'session', action: 'create', method: 'post'}) do %>
+<%= form_tag login_path, method: :post do %>
 
     <%= label name="username",  value="Username:" %>
     <%= text_field_tag name="username" %>

@@ -42,9 +42,13 @@ class RidesController < ApplicationController
     end
 
     def join
-        @ride = Ride.find(params[:id])
-        @ride.users << current_user
-        redirect_to ride_path(@ride)
+        if logged_in?
+            @ride = Ride.find(params[:id])
+            @ride.users << current_user
+            redirect_to ride_path(@ride)
+        else
+            redirect_to signup_path
+        end
     end
 
     def leave
