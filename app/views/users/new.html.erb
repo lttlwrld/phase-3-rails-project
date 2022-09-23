@@ -11,24 +11,22 @@
   </div>
 <% end %>
 
-<%= form_tag signup_path do %>
+<%= form_for @user, url: signup_path do |f| %>
+  <%= f.label name="username", value="Username:" %>
+  <%= f.text_field :username %>
+  <br>
+  <br>
+  <%= f.label name="email", value="E-Mail:" %>
+  <%= f.text_field :email %>
+  <br>
+  <br>
+  <%= f.label name="password", value="Password:" %>
+  <%= f.password_field :password %>
+  <br>
+  <br>  <%= f.label name="name", value="Name:" %>
+  <%= f.text_field :name %>
+  <br>
+  <br>
+  <%= f.submit "Log In" %>
 
-    <%= label name="username", value="Username:" %>
-    <%= text_field_tag "username", value=@user.username %>
-    <br>
-    <br>
-    <%= label name="email", value="E-Mail:" %>
-    <%= text_field_tag name="email", value=@user.email %>
-    <br>
-    <br>
-    <%= label name="password", value="Password:" %>
-    <%= password_field_tag name="password" %>
-    <br>
-    <br>
-    <%= label name="name", value="Name:" %>
-    <%= text_field_tag name="name", value=@user.name %>
-    <br>
-    <br>
-    <%= submit_tag "Sign Up" %>
-  
 <% end %>

@@ -1,16 +1,16 @@
 <h3>Welcome Back</h3>
 <br>
-<%= form_tag login_path do %>
-
-    <%= label name="username",  value="Username:" %>
-    <%= text_field_tag name="username" %>
+<%= form_for @user, url: login_path do |f| %>
+    <%= f.label name="username", value="Username:" %>
+    <%= f.text_field :username %>
     <br>
     <br>
-    <%= label name="password", value="Password:" %>
-    <%= password_field_tag name="password" %>
+    <%= %>
+    <%= f.label name="password", value="Password:" %>
+    <%= f.password_field :password %>
     <br>
     <br>
-    <%= submit_tag "Log In" %>
+    <%= f.submit "Log In" %>
   
 <% end %>
 <br>

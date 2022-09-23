@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/profile/:username', to: 'users#show', as: 'user'
   get '/profile/:username/bio', to: 'users#bio', as: 'user_bio'
-  post '/profile/:username/bio', to: 'users#edit_bio'
+  patch '/profile/:username/bio', to: 'users#edit_bio'
 
   get '/profile/:username/bikes', to: 'bikes#index', as: 'user_bikes'
   get '/profile/:username/bikes/new', to: 'bikes#new', as: 'new_bike'

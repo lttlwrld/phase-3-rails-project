@@ -19,7 +19,7 @@ class RidesController < ApplicationController
             @ride.save
             @ride.update(user_id: current_user.id)
             @ride.users << current_user
-            redirect_to ride_path(ride)
+            redirect_to ride_path(@ride)
         else
             render :new
         end

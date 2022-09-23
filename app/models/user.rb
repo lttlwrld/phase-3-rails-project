@@ -1,14 +1,13 @@
 class User < ActiveRecord::Base
 
     has_secure_password
-    has_many :comments
     has_many :bikes
     has_many :rides
     has_many :components, :through =>  :bikes
     has_many :ride_users
     has_many :rides, :through => :ride_users
 
-    validates_presence_of :username, :name, :email, :password 
+    validates_presence_of :username, :name, :email, :password, if: :password
     validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/ }
     validates :username, uniqueness: true
     validates :email, uniqueness: true

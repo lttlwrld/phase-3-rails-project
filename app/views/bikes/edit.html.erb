@@ -11,7 +11,7 @@
     </div>
 <% end %>
 
-<%= form_for @bike, :url => edit_bike_path do |f| %>
+<%= form_for @bike, url: edit_bike_path do |f| %>
     <%= f.label name="Model:" %>
     <%= f.text_field :model, value: @bike.model %>
     <br>

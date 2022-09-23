@@ -15,33 +15,30 @@ class UsersController < ApplicationController
         end 
     end
 
-    def show
-        @user = User.find_by(username: params[:username])
-    end
-
     def bio
         @user = User.find_by(username: params[:username])
-        if logged_in?
-            if @user == current_user
-                render "bio"
-            else
-                redirect_to user_path(@user.username)
-            end
+        if logged_in? && @user == current_user
+            render :bio
         else
             redirect_to user_path(@user.username)
         end
     end
 
     def edit_bio
+        if user_params[:password].blank?
+            user_params.delete(:password)
+        end
         @user = User.find_by(username: params[:username])
-        @user.bio = params[:bio]
-        @user.update(bio: params[:bio])
+        @user.update(user_params)
         redirect_to user_path(@user.username)
     end
 
+    def show
+        @user = User.find_by(username: params[:username])
+    end
 
     def user_params
-        params.permit(:username, :password, :email, :name, :bio)
+        params.require(:user).permit(:username, :password, :email, :name, :bio)
     end
 
 end
