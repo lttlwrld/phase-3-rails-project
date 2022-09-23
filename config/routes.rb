@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   delete '/rides/:id', to: 'rides#delete', as: 'delete_ride'
 
   get '/leaderboard', to: 'leaderboard#index'
+
+  get '/auth/github/callback' => 'session#omniauth'
 end

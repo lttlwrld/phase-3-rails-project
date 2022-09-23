@@ -13,3 +13,8 @@
     <%= submit_tag "Log In" %>
   
 <% end %>
+<br>
+
+<%= form_tag '/auth/github', method: :post do %>
+    <%= submit_tag "Log In With GitHub!" %> 
+<% end %>
