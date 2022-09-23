@@ -71,6 +71,8 @@ class RidesController < ApplicationController
         @ride = Ride.find(params[:id])
     end
 
+    private
+
     def ride_params
         params.require(:ride).permit(:name, :date, :category, :distance, :about, :location)
     end

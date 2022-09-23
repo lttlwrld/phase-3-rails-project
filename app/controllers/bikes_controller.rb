@@ -66,6 +66,8 @@ class BikesController < ApplicationController
         redirect_to user_bikes_path
     end
 
+    private
+
     def bike_params
         params.require(:bike).permit(:model, components_attributes: [:id, :category, :model])
     end
