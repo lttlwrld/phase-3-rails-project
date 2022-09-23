@@ -1,12 +1,22 @@
 <h2>Add Bike</h2>
 
-<%= form_for @bike, :url => new_bike_path do |f| %>
+<% if @bike.errors.any? %>
+    <div style="color:red;">
+        <h4>There were some errors:</h4>
+        <ul>
+            <% @bike.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_for @bike, url: new_bike_path do |f| %>
     <%= f.label name="Model:" %>
-    <%= f.text_field :model %>
+    <%= f.text_field :model, value: @bike.model %>
     <br>
     <h3>Components:</h3>
     <%= f.fields_for :components do |c| %>
-
         <%= c.label name="Category:" %>
         <%= c.text_field :category %><br>
         <br>

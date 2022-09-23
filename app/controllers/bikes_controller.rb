@@ -19,9 +19,14 @@ class BikesController < ApplicationController
     end
 
     def create
-        bike = Bike.create(bike_params)
-        bike.update(user_id: current_user.id)
-        redirect_to bike_path(bike.user.username, bike)
+        @bike = Bike.new(bike_params)
+        @bike.update(user_id: current_user.id)
+        if @bike.valid? 
+            @bike.save
+            redirect_to bike_path(@bike.user.username, @bike)
+        else
+            render :new
+        end
     end
 
     def edit
@@ -37,9 +42,14 @@ class BikesController < ApplicationController
     end
 
     def update
-        bike = Bike.find(params[:id])
-        bike.update(bike_params)
-        redirect_to bike_path(bike.user.username, bike)
+        @bike = Bike.find(params[:id])
+        @bike.update(bike_params)
+        if @bike.valid? 
+            @bike.save
+            redirect_to bike_path(@bike.user.username, @bike)
+        else
+            render :edit
+        end
     end
 
     def show

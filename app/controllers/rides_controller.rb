@@ -13,10 +13,16 @@ class RidesController < ApplicationController
     end
 
     def create
-        ride = Ride.create(ride_params)
-        ride.update(user_id: current_user.id)
-        ride.users << current_user
-        redirect_to ride_path(ride)
+        @ride = Ride.new(ride_params)
+        @ride[:user_id] = current_user.id
+        if @ride.valid?
+            @ride.save
+            @ride.update(user_id: current_user.id)
+            @ride.users << current_user
+            redirect_to ride_path(ride)
+        else
+            render :new
+        end
     end
 
     def delete
@@ -32,7 +38,11 @@ class RidesController < ApplicationController
     def update
         @ride = Ride.find(params[:id])
         @ride.update(ride_params)
-        redirect_to ride_path(@ride)
+        if @ride.valid?
+            redirect_to ride_path(@ride)
+        else
+            render :new
+        end
     end
 
     def complete

@@ -1,15 +1,26 @@
-<%= form_for(@ride) do |f| %>
+<% if @ride.errors.any? %>
+    <div style="color:red;">
+        <h4>There were some errors:</h4>
+        <ul>
+            <% @ride.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_for @ride do |f| %>
 
     <%= f.label name="Name:" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, value: @ride.name %>
     <br>
     <br>
     <%= f.label name="Date:" %>
-    <%= f.text_field :date %>
+    <%= f.text_field :date, value: @ride.date %>
     <br>
     <br>
     <%= f.label name="Location:" %>
-    <%= f.text_field :location %>
+    <%= f.text_field :location, value: @ride.location %>
     <br>
     <br>
     <%= f.label name="Category:" %>
@@ -17,11 +28,11 @@
     <br>
     <br>
     <%= f.label name="Distance (Miles):" %>
-    <%= f.text_field :distance %>
+    <%= f.text_field :distance, value: @ride.distance %>
     <br>
     <br>
     <%= f.label name="About:" %>
-    <%= f.text_area :about %>
+    <%= f.text_area :about, value: @ride.about %>
     <br>
     <br>
     <%= f.submit %>

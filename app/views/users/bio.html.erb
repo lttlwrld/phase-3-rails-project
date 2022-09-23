@@ -1,6 +1,6 @@
 <h3>Add Something About Yourself!</h3>
 <br>
-<%= form_tag user_bio_path, method: :patch do %>
+<%= form_tag user_bio_path do %>
 
     <%= text_area_tag name="bio", value="#{@user.bio}"%>
     <br>

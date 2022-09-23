@@ -1,13 +1,24 @@
 <h3>Join the Peleton!</h3>
-<br>
-<%= form_tag signup_path, method: :post do %>
+
+<% if @user.errors.any? %>
+  <div style="color:red;">
+    <h4>There were some errors:</h4>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_tag signup_path do %>
 
     <%= label name="username", value="Username:" %>
-    <%= text_field_tag name="username" %>
+    <%= text_field_tag "username", value=@user.username %>
     <br>
     <br>
     <%= label name="email", value="E-Mail:" %>
-    <%= text_field_tag name="email" %>
+    <%= text_field_tag name="email", value=@user.email %>
     <br>
     <br>
     <%= label name="password", value="Password:" %>
@@ -15,7 +26,7 @@
     <br>
     <br>
     <%= label name="name", value="Name:" %>
-    <%= text_field_tag name="name" %>
+    <%= text_field_tag name="name", value=@user.name %>
     <br>
     <br>
     <%= submit_tag "Sign Up" %>
