@@ -12,15 +12,15 @@
 <%= form_for @ride do |f| %>
 
     <%= f.label name="Name:" %>
-    <%= f.text_field :name, value: @ride.name %>
+    <%= f.text_field :name %>
     <br>
     <br>
     <%= f.label name="Date:" %>
-    <%= f.text_field :date, value: @ride.date %>
+    <%= f.text_field :date %>
     <br>
     <br>
     <%= f.label name="Location:" %>
-    <%= f.text_field :location, value: @ride.location %>
+    <%= f.text_field :location %>
     <br>
     <br>
     <%= f.label name="Category:" %>
@@ -28,11 +28,11 @@
     <br>
     <br>
     <%= f.label name="Distance (Miles):" %>
-    <%= f.text_field :distance, value: @ride.distance %>
+    <%= f.text_field :distance %>
     <br>
     <br>
     <%= f.label name="About:" %>
-    <%= f.text_area :about, value: @ride.about %>
+    <%= f.text_area :about %>
     <br>
     <br>
     <%= f.submit %>

@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     helper_method :logged_in?
 
-    ##validates_presence_of :username, :name, :email, :password
-    ##validates :username, uniqueness: true
-    ##validates :email, uniqueness: true
-  
     def logged_in?
       !!current_user
     end
