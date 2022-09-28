@@ -1,12 +1,27 @@
-<h1><%= @user.username %></h1>
-<%= form_tag user_bikes_path(@user.username), method: :get do %>
-    <%= submit_tag "My Bikes" %> 
-<% end %>
+<h1>@<%= @user.username %></h1>
+<h4><%= @user.name %>
 <br>
-<%= form_tag user_rides_path(@user.username), method: :get do %>
-    <%= submit_tag "My Rides" %> 
+<% if @user == current_user %>
+    <br>
+    <%= form_tag user_bikes_path(@user.username), method: :get do %>
+        <%= submit_tag "My Bikes" %> 
+    <% end %>
+    <br>
+    <%= form_tag user_rides_path(@user.username), method: :get do %>
+        <%= submit_tag "My Rides" %> 
+    <% end %>
+    <br>
+<% else %>
+    <br>
+    <%= form_tag user_bikes_path(@user.username), method: :get do %>
+        <%= submit_tag "#{@user.name}'s Bikes" %> 
+    <% end %>
+    <br>
+    <%= form_tag user_rides_path(@user.username), method: :get do %>
+        <%= submit_tag "#{@user.name}'s Rides" %> 
+    <% end %>
+    <br>
 <% end %>
-<br>
 <strong>Odometer:</strong> <%= @user.mileage %> Miles
 <br>
 <br>

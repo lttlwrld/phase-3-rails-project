@@ -9,7 +9,7 @@ class Bike < ActiveRecord::Base
 
     def check_components
       if components[0].category == "" || components[0].model == "" || components[1].category == "" || components[1].model == "" 
-        return errors.add :base, "Must Include 2 Componenets"
+        return errors.add :components, "Must Include 2 Componenets"
       end
     end
 

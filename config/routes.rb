@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root 'static#home'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
-  get '/login', to: 'session#new'
-  post '/login', to: 'session#create'
-  get '/logout', to: 'session#destroy'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
 
   get '/profile/:username', to: 'users#show', as: 'user'
   get '/profile/:username/bio', to: 'users#bio', as: 'user_bio'
@@ -33,5 +33,5 @@ Rails.application.routes.draw do
 
   get '/leaderboard', to: 'leaderboard#index'
 
-  get '/auth/github/callback' => 'session#omniauth'
+  get '/auth/github/callback' => 'sessions#omniauth'
 end
