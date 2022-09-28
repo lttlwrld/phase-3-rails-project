@@ -1,6 +1,5 @@
 <h1>@<%= @user.username %></h1>
-<h4><%= @user.name %>
-<br>
+<h4><%= @user.name %></h4>
 <% if @user == current_user %>
     <br>
     <%= form_tag user_bikes_path(@user.username), method: :get do %>

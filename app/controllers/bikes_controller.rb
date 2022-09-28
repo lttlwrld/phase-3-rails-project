@@ -20,9 +20,8 @@ class BikesController < ApplicationController
 
     def create
         @bike = Bike.new(bike_params)
-        @bike.update(user_id: current_user.id)
-        if @bike.valid? 
-            @bike.save
+        @bike[:user_id] = current_user.id
+        if @bike.save
             redirect_to bike_path(@bike.user.username, @bike)
         else
             render :new
@@ -43,9 +42,7 @@ class BikesController < ApplicationController
 
     def update
         @bike = Bike.find(params[:id])
-        @bike.update(bike_params)
-        if @bike.valid? 
-            @bike.save
+        if @bike.update(bike_params)
             redirect_to bike_path(@bike.user.username, @bike)
         else
             render :edit

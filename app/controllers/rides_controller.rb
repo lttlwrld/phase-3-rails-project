@@ -15,9 +15,7 @@ class RidesController < ApplicationController
     def create
         @ride = Ride.new(ride_params)
         @ride[:user_id] = current_user.id
-        if @ride.valid?
-            @ride.save
-            @ride.update(user_id: current_user.id)
+        if @ride.save
             @ride.users << current_user
             redirect_to ride_path(@ride)
         else
@@ -37,8 +35,7 @@ class RidesController < ApplicationController
     
     def update
         @ride = Ride.find(params[:id])
-        @ride.update(ride_params)
-        if @ride.valid?
+        if @ride.update(ride_params)
             redirect_to ride_path(@ride)
         else
             render :new
