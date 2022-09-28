@@ -1,28 +1,44 @@
 <h2>Add Bike</h2>
 
-<% if @bike.errors.any? %>
-    <div style="color:red;">
-        <h4>There were some errors:</h4>
-        <ul>
-            <% @bike.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
-
 <%= form_for @bike,  url: new_bike_path do |f| %>
+
+    <% if @bike.errors.any? %>
+        <div style="color:red;">
+            <h4>There were some errors:</h4>
+            <ul>
+                <% @bike.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <% if @bike.errors[:model].any? %> 
+        <div class="field_with_errors">
+    <% else %>
+        <div>
+    <% end %>
     <%= f.label name="Model:" %>
     <%= f.text_field :model, value: @bike.model %>
+    </div>
     <br>
+
+    <% if @bike.errors[:base].any? %> 
+        <div class="field_with_errors">
+    <% else %>
+        <div>
+    <% end %>
     <h3>Components:</h3>
     <%= f.fields_for :components do |c| %>
         <%= c.label name="Category:" %>
-        <%= c.text_field :category %><br>
+        <%= c.text_field :category %>
+        <br>     
         <br>
         <%= c.label name="Model:" %>
         <%= c.text_field :model %><br>
         <br>
     <% end %>
+    </div>
+    <br>
     <%= f.submit %>
 <% end %> 
