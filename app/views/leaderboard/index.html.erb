@@ -1,7 +1,22 @@
-<h2>Leaderboard</h2>
+<div class="row">
 
-<ol>
-<% User.leaderboard.each do |user, mileage| %>
-    <li><%= link_to "#{user.username}", user_path(user.username) %> - <%= user.name %> - <%= mileage %> Miles</li><br>
-<% end %>
-</ol>
+    <div class="column">
+        <ol>
+        <h2>User Leaderboard</h2>
+        <br>
+        <% User.leaderboard.each do |user, mileage| %>
+            <li><%= link_to "#{user.username}", user_path(user.username) %> - <%= user.name %> - <%= mileage %> Miles</li><br>
+        <% end %>
+        </ol>
+    </div>
+  
+    <div class="column">
+        <ol>
+        <h2>Ride Leaderboard</h2>
+        <% Ride.leaderboard.each do |ride| %>
+            <li><%= link_to "#{ride.name}", ride_path(ride) %> - <%= ride.distance %> Miles <%= ' *' if ride.completed %></li><br>
+        <% end %>
+        <em style="font-size: 9px">Completed rides are marked by *</em>
+        </ol>
+    </div>
+</div>

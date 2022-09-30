@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_062945) do
+ActiveRecord::Schema.define(version: 2022_09_28_220850) do
 
   create_table "bikes", force: :cascade do |t|
     t.integer "user_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_09_23_062945) do
     t.string "date"
     t.string "location"
     t.string "category"
-    t.string "distance"
+    t.integer "distance"
     t.string "about"
     t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false

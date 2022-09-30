@@ -40,6 +40,15 @@
         background-color: red;
         display: table;
     }
+
+    .row {
+        display: flex;
+    }
+
+    .column {
+        flex: 50%;
+    }
+    
     </style>
     <title>VeloBuds</title>
     <% if logged_in? %>
@@ -49,6 +58,7 @@
         <%= link_to "Rides", rides_path %>
         <%= link_to "Leaderboard", leaderboard_path %>
         <%= link_to "Log Out", logout_path, method: :delete %>
+        
       </div>
     <% else %>
       <div class="topnav">

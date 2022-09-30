@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   patch '/rides/:id/leave', to: 'rides#leave', as: 'leave_ride'
   patch '/rides/:id', to: 'rides#update'
   delete '/rides/:id', to: 'rides#delete', as: 'delete_ride'
+  get '/next-big-one', to: 'rides#next_big_one', as: 'next_big_one'
+
 
   get '/leaderboard', to: 'leaderboard#index'
 

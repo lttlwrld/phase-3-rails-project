@@ -4,7 +4,10 @@ class Ride < ActiveRecord::Base
     has_many :ride_users
     has_many :users, :through => :ride_users
 
+    scope :longest, -> { where(completed: false).order('distance desc').limit(1) }
+    scope :leaderboard, -> { order('distance desc') }
+
     validates_presence_of :name, :date, :location, :category, :distance, :about
     validates :distance, numericality: { only_integer: true }
-
+    
 end

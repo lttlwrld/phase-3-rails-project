@@ -63,7 +63,7 @@ class RidesController < ApplicationController
         @ride.users.delete(current_user)
         redirect_to ride_path(@ride)
     end
-    
+
     def show
         @ride = Ride.find(params[:id])
     end
