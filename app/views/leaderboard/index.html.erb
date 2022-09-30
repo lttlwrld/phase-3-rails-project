@@ -13,6 +13,10 @@
     <div class="column">
         <ol>
         <h2>Ride Leaderboard</h2>
+        <%= form_tag ride_path(id: Ride.longest.id), method: :get do %>
+            <%= submit_tag 'Join the next "Big One"' %> 
+        <% end %>
+        <br>
         <% Ride.leaderboard.each do |ride| %>
             <li><%= link_to "#{ride.name}", ride_path(ride) %> - <%= ride.distance %> Miles <%= ' *' if ride.completed %></li><br>
         <% end %>
