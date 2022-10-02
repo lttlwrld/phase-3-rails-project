@@ -14,8 +14,8 @@ class RidesController < ApplicationController
 
     def create
         @ride = Ride.new(ride_params)
-        @ride[:user_id] = current_user.id
         if @ride.save
+            @ride.users = []
             @ride.users << current_user
             redirect_to ride_path(@ride)
         else
@@ -31,6 +31,9 @@ class RidesController < ApplicationController
 
     def edit
         @ride = Ride.find(params[:id])
+        if @ride.user != current_user
+            redirect_to ride_path(@ride)
+        end
     end
     
     def update
@@ -71,7 +74,7 @@ class RidesController < ApplicationController
     private
 
     def ride_params
-        params.require(:ride).permit(:name, :date, :category, :distance, :about, :location)
+        params.require(:ride).permit(:name, :date, :category, :distance, :about, :location, :user_id)
     end
     
 end

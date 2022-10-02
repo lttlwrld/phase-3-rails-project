@@ -1,0 +1,36 @@
+<h2>Ride Time</h2>
+
+<strong>Ride:</strong> <%= link_to "#{@ride.name}", ride_path(@ride) %>
+<br>
+<br>
+<strong>User:</strong> <%= link_to "#{current_user.username}", user_path(current_user.username) %>
+<br>
+<br>
+<strong>Date:</strong> <%= @ride.date %>
+<br>
+<br>
+<strong>Location:</strong> <%= @ride.location %>
+<br>
+<br>
+<strong>Distance:</strong> <%= @ride.distance %> Miles
+<br>
+<br>
+<%= form_for @participant, url: edit_ride_stats_path do |f| %>
+    <% if @participant.errors.any? %>
+        <div style="color:red;">
+            <h4>There were some errors:</h4>
+            <ul>
+                <% @participant.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+  
+    <strong>Time (HH:MM:SS):</strong>
+    <%= f.text_field :time %>
+    <br>
+    <br>
+    <%= f.submit "Submit Time" %>
+      
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_28_220850) do
+ActiveRecord::Schema.define(version: 2022_10_02_085028) do
 
   create_table "bikes", force: :cascade do |t|
     t.integer "user_id"
@@ -27,11 +27,13 @@ ActiveRecord::Schema.define(version: 2022_09_28_220850) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ride_users", force: :cascade do |t|
+  create_table "participants", force: :cascade do |t|
     t.integer "ride_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "time"
+    t.decimal "speed", precision: 100, scale: 2
   end
 
   create_table "rides", force: :cascade do |t|

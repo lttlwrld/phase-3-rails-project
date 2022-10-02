@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   patch '/rides/:id', to: 'rides#update'
   delete '/rides/:id', to: 'rides#delete', as: 'delete_ride'
   get '/next-big-one', to: 'rides#next_big_one', as: 'next_big_one'
-
+  get '/rides/:id/edit-stats', to: 'participants#edit', as: 'edit_ride_stats'
+  patch '/rides/:id/edit-stats', to: 'participants#update'
 
   get '/leaderboard', to: 'leaderboard#index'
 

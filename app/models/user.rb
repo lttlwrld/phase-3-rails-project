@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
     has_many :bikes
     has_many :rides_created, class_name: "Ride"
     has_many :components, :through =>  :bikes
-    has_many :ride_users
-    has_many :rides, :through => :ride_users
+    has_many :participants
+    has_many :rides, :through => :participants
 
     validates_presence_of :username, :name, :email, :password
     validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/ }
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
             end
         end
         miles
+    end
+
+    def current_ride_stats(ride)
+        participants.find_by(ride_id: ride.id)
     end
 
 end
