@@ -58,14 +58,23 @@ Created By: <%= link_to "#{@ride.user.username}", user_path(@ride.user.username)
 <strong>Details:</strong> <%= @ride.about %>
 <br>
 <br>
-<strong>Participants:</strong>
-<ol>
-<% Participant.ride(@ride.id).leaderboard.each do |participant| %>
-    <% user = User.find(participant.user_id) %>
-    <li><%= link_to "#{user.username}", user_path(user.username) %>
-    <% if user.current_ride_stats(@ride).time %>
-        --- Time: <%= user.current_ride_stats(@ride).time %> --- Speed: <%= user.current_ride_stats(@ride).speed %> MPH
-    <% end %>    
-    </li>
-<% end %>
-</ol>
+<table style="width: 500px; text-align: left">
+    <tr>
+        <th>Participant:</th>
+        <th>Time:</th>
+        <th>Avg. Speed:</th>
+    </tr>
+    <% Participant.ride(@ride.id).leaderboard.each do |participant| %>
+        <tr>
+        <% user = User.find(participant.user_id) %>
+        <th style="font-weight: normal"><%= link_to "#{user.username}", user_path(user.username) %></th>
+        <% if user.current_ride_stats(@ride).time %>
+            <th style="font-weight: normal" ><%= user.current_ride_stats(@ride).time %></th>
+            <th style="font-weight: normal" ><%= user.current_ride_stats(@ride).speed %> MPH</th>
+        <% else %>
+            <th style="font-weight: normal">--:--:--</th>
+            <th style="font-weight: normal">--</th>
+        <% end %>   
+        </tr> 
+    <% end %>
+</table>
